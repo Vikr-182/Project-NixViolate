@@ -1,0 +1,245 @@
+<!doctype html>
+
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Violations Database</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename = 'styles/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="shortcut icon" type="image/jpg" href="https://www.iconspng.com/images/server-2/server-2.jpg"/>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	</head>
+
+	<style>
+#id0,#id1,#id2,#id3,#id4,#id00 {
+	font-weight: 700;
+}
+
+	</style>
+
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded fixed-top">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link">Dashboard</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link">About Us</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link">Contact Us</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+						<label for="search">Search : </label>
+						<input type="text" id="search" name="search">
+						<button type="button" class="btn btn-success" id="searchb">Search</button>
+				</li>
+				<li class="nav-item dropdown">
+						<li class="nav-item">
+							<div class="form-group">
+								<select class="form-control" id="sel1">
+									<option value="10">10</option>
+									<option value="25">25</option>
+									<option value="100">100</option>
+									<option value="1000">1000</option>
+								</select>
+							</div> 
+						</li>
+				</li>
+			</ul>
+		</nav>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-header">
+						Apply filters	
+					</div>
+					<div class="card-body">
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">
+								Implement Via Search
+							</li>
+							<li class="list-group-item">
+								<input type="checkbox" id="e1">
+								<label for="e1">company</label>
+							</li>
+							<li class="list-group-item">
+
+								<input type="checkbox" id="e2">
+								<label for="e2">Primary offence</label>
+							</li>
+							<li class="list-group-item">
+								<input type="checkbox" id="e3">
+								<label for="e3">Agency</label>
+
+							</li>
+							<label for="e4"> Please select minimin Penalty (in $): </label><br>
+							<input type="range" min="1" max="1000000" value="0" id="e4">
+							<label for="e4" id="mprice"></label>
+							<li class="list-group-item">
+								<button type="button" class="btn btn-primary" id="applyb" style="float:right">Apply</button>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8">	
+				<div class="card">
+					<div class="card-header">
+						See <span id="number_of_entries"></span> entries per page
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-striped" >
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-10-md"></div>
+			<div class="col-2-md">
+						<button type="button" class="btn btn-info" id="next">Next</button>
+						<button type="button" class="btn btn-warning" id="prev">Previous</button>
+		</div>
+	</body>
+
+	<script>
+		document.querySelector('#e4').addEventListener('input', e=> {
+			console.log(e.target.value); 
+			document.querySelector('#mprice').innerHTML = e.target.value;
+		});
+
+
+var xmlHttp = new XMLHttpRequest();
+xmlHttp.open( "GET", 'http://127.0.0.1:5000/data', false );
+xmlHttp.send( null );
+var arr = JSON.parse(xmlHttp.responseText);
+// arr is complete array
+var state = [false, false, false, false, false];
+// sorted by
+var table = document.querySelector('table');
+var cells = [] // will contain all the cells
+var start = 0;
+var scroll = 5;
+var e = document.getElementById("sel1");
+var strUser = e.options[e.selectedIndex].value
+scroll = parseInt(strUser);
+// show rows from here
+
+// create rows 
+for(let i=0;i<scroll + 1;i++){
+	row = table.insertRow(i);
+	cells.push([]);
+	for(let j=0;j<6;j++) cells[i].push(row.insertCell(j));
+}
+//console.log(cells);
+console.log(arr);
+document.getElementById("number_of_entries").innerHTML = scroll.toString();
+
+cells[0][0].innerHTML = 'Index'
+cells[0][0].id = 'id00'
+for(let j=0;j<5;j++){
+	cells[0][j+1].innerHTML = arr[0][j] + '&darr;';
+	//cells[0][j].id = arr[0][j].split(' ')[0];
+	cells[0][j+1].id = 'id' + j.toString();
+}
+
+for(let i=0;i<scroll;i++){
+	cells[i+1][0].innerHTML = (i+start+1).toString();
+	for(let j=0;j<5;j++){
+		cells[i+1][j+1].innerHTML = arr[i+1+start][j];
+	}
+}
+
+function red(a){
+	if(a[0]=='$'){
+		a=a.replace('$','');
+		a=a.replace(',','');
+		return a-'0';
+	} return a;
+}
+for(let i=0;i<5;i++) {
+	var cid = '#id' + i.toString();
+	document.querySelector(cid).addEventListener('click', e => {
+		console.log(e.target);
+		var sid = e.target.id[2]-'0';
+		if(state[sid]){
+			console.log('sorting');
+			arr.sort((a,b)=>{ return red(a[sid])<red(b[sid]); });
+		} else {
+			arr.sort((a,b)=>{ return red(a[sid])>red(b[sid]); });
+		}
+		state[sid]=!state[sid];
+		console.log(sid,state);
+		for(let i=0;i<scroll;i++){
+			cells[i+1][0].innerHTML = (i+start+1).toString();
+			for(let j=0;j<5;j++){
+				cells[i+1][j+1].innerHTML = arr[i+1+start][j];
+			}
+		}
+	});
+}
+
+document.querySelector('#next').addEventListener('click', e=> {
+	start+=scroll;
+	for(let i=0;i<scroll;i++){
+		cells[i+1][0].innerHTML = (i+start+1).toString();
+		for(let j=0;j<5;j++){
+			cells[i+1][j+1].innerHTML = arr[i+1+start][j];
+		}
+	}
+})
+
+document.querySelector('#prev').addEventListener('click', e=> {
+	if(start>=scroll) start-=scroll;
+	for(let i=0;i<scroll;i++){
+		cells[i+1][0].innerHTML = (i+start+1).toString();
+		for(let j=0;j<5;j++){
+			cells[i+1][j+1].innerHTML = arr[i+1+start][j];
+		}
+	}
+})
+
+function ninc(a,s){
+	let tot=0;
+	if(document.querySelector('#e1').checked && a[0].includes(s)) tot++;
+	if(document.querySelector('#e2').checked && a[3].includes(s)) tot++;
+	if(document.querySelector('#e3').checked && a[4].includes(s)) tot++;
+	if((document.querySelector('#e4').value - '0') > red(a[1])) return -1;
+	return tot;
+}
+document.querySelector('#searchb').addEventListener('click', e => {
+	var searchv = document.querySelector('#search').value;
+	console.log(searchv);
+	arr.sort((a,b)=>{ return ninc(a,searchv)<ninc(b,searchv); });
+	for(let i=0;i<scroll;i++){
+		cells[i+1][0].innerHTML = (i+start+1).toString();
+		for(let j=0;j<5;j++){
+			cells[i+1][j+1].innerHTML = arr[i+1+start][j];
+		}
+	}
+});
+document.querySelector('#applyb').addEventListener('click', e => {
+	var searchv = document.querySelector('#search').value;
+	console.log(searchv);
+	arr.sort((a,b)=>{ return ninc(a,searchv)<ninc(b,searchv); });
+	for(let i=0;i<scroll;i++){
+		cells[i+1][0].innerHTML = (i+start+1).toString();
+		for(let j=0;j<5;j++){
+			cells[i+1][j+1].innerHTML = arr[i+1+start][j];
+		}
+	}
+});
+function change_scroll(){}
+
+	</script>
+	
+</html>

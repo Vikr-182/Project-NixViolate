@@ -1,0 +1,203 @@
+count = 
+{
+    "ARE": {
+        "number": 10,
+        "total": 550809
+    },
+    "ARG": {
+        "number": 2,
+        "total": 14975
+    },
+    "AUS": {
+        "number": 372,
+        "total": 11226286
+    },
+    "AUT": {
+        "number": 18,
+        "total": 305755
+    },
+    "BEL": {
+        "number": 469,
+        "total": 13072439
+    },
+    "BHR": {
+        "number": 0,
+        "total": 0
+    },
+    "BRA": {
+        "number": 349,
+        "total": 15331660
+    },
+    "CAN": {
+        "number": 2246,
+        "total": 66898477
+    },
+    "CHE": {
+        "number": 1188,
+        "total": 57999662
+    },
+    "CHL": {
+        "number": 24,
+        "total": 1314125
+    },
+    "CHN": {
+        "number": 294,
+        "total": 26660367
+    },
+    "COL": {
+        "number": 31,
+        "total": 643514
+    },
+    "CYP": {
+        "number": 1,
+        "total": 10400
+    },
+    "DEU": {
+        "number": 2062,
+        "total": 81610208
+    },
+    "DNK": {
+        "number": 33,
+        "total": 877136
+    },
+    "EGY": {
+        "number": 0,
+        "total": 0
+    },
+    "ESP": {
+        "number": 111,
+        "total": 4708198
+    },
+    "FIN": {
+        "number": 91,
+        "total": 3807060
+    },
+    "FRA": {
+        "number": 985,
+        "total": 56108042
+    },
+    "GBR": {
+        "number": 1504,
+        "total": 85464010
+    },
+    "GRC": {
+        "number": 45,
+        "total": 3869362
+    },
+    "IND": {
+        "number": 133,
+        "total": 5663273
+    },
+    "IRL": {
+        "number": 288,
+        "total": 12943409
+    },
+    "ISR": {
+        "number": 224,
+        "total": 12230135
+    },
+    "ITA": {
+        "number": 179,
+        "total": 7302872
+    },
+    "JOR": {
+        "number": 0,
+        "total": 0
+    },
+    "JPN": {
+        "number": 1163,
+        "total": 50888843
+    },
+    "KOR": {
+        "number": 72,
+        "total": 5312711
+    },
+    "KWT": {
+        "number": 3,
+        "total": 154625
+    },
+    "LBN": {
+        "number": 0,
+        "total": 0
+    },
+    "LUX": {
+        "number": 450,
+        "total": 16019691
+    },
+    "MEX": {
+        "number": 827,
+        "total": 18513671
+    },
+    "NLD": {
+        "number": 1288,
+        "total": 51959131
+    },
+    "NOR": {
+        "number": 47,
+        "total": 1954759
+    },
+    "NZL": {
+        "number": 44,
+        "total": 1634299
+    },
+    "PAN": {
+        "number": 0,
+        "total": 0
+    },
+    "PHL": {
+        "number": 0,
+        "total": 0
+    },
+    "PRT": {
+        "number": 12,
+        "total": 1419386
+    },
+    "RUS": {
+        "number": 34,
+        "total": 1536833
+    },
+    "SAU": {
+        "number": 79,
+        "total": 6082412
+    },
+    "SGP": {
+        "number": 70,
+        "total": 2126263
+    },
+    "SWE": {
+        "number": 257,
+        "total": 10093826
+    },
+    "THA": {
+        "number": 7,
+        "total": 354814
+    },
+    "TUR": {
+        "number": 1,
+        "total": 900000
+    },
+    "TWN": {
+        "number": 110,
+        "total": 5163859
+    },
+    "UKR": {
+        "number": 344,
+        "total": 5190765
+    },
+    "USA": {
+        "number": 64808,
+        "total": 2384243121
+    },
+    "VEN": {
+        "number": 84,
+        "total": 10663625
+    },
+    "VIR": {
+        "number": 14,
+        "total": 271263
+    },
+    "ZAF": {
+        "number": 62,
+        "total": 3125737
+    }
+}
